@@ -1,0 +1,27 @@
+// Crear variables en SASS
+// $selector: "h1";
+// $propiedad: background;
+// $valor: red;
+
+// #{$selector}{
+//     #{$propiedad}: $valor;
+// }
+
+
+
+//Variables tipo lista
+$list:"p", color;
+$colorIni:red, orange;
+$colorSeg:blue, green;
+
+$colorIni:append($colorIni, white);
+$colorIni:append($colorIni, #00ff0083);
+
+#{nth($list, 1)}{
+
+    $listaNUeva: join($colorIni, $colorSeg);
+    $listaNUeva: set-nth($listaNUeva, 3, "Miguel");
+
+    #{nth($list, 2)}: nth($listaNUeva, index($listaNUeva, #00ff0083));
+    #{nth($list, 2)}: nth($listaNUeva, 3);
+}
