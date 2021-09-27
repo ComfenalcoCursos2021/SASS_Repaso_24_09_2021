@@ -10,18 +10,50 @@
 
 
 //Variables tipo lista
-$list:"p", color;
-$colorIni:red, orange;
-$colorSeg:blue, green;
+// https://sass-lang.com/documentation/values/lists
+// $list:"p", color;
+// $colorIni:red, orange;
+// $colorSeg:blue, green;
 
-$colorIni:append($colorIni, white);
-$colorIni:append($colorIni, #00ff0083);
+// $colorIni:append($colorIni, white); //Metodo para agregar un valor a final de la lista
+// $colorIni:append($colorIni, #00ff0083);
 
-#{nth($list, 1)}{
+// #{nth($list, 1)}{
 
-    $listaNUeva: join($colorIni, $colorSeg);
-    $listaNUeva: set-nth($listaNUeva, 3, "Miguel");
+//     $listaNUeva: join($colorIni, $colorSeg); // Metodo para unir listas
+//     $listaNUeva: set-nth($listaNUeva, 3, "Miguel"); //Metodo para reemplazar un valor en la lista
 
-    #{nth($list, 2)}: nth($listaNUeva, index($listaNUeva, #00ff0083));
-    #{nth($list, 2)}: nth($listaNUeva, 3);
+//     #{nth($list, 2)}: nth($listaNUeva, index($listaNUeva, #00ff0083)); //Metodo para validar si existe el valor en la lista
+//     #{nth($list, 2)}: nth($listaNUeva, 3); // Metodo para sacar un valor establacido en el orde de la lista
+// }
+
+
+
+//Variables de tipo maps
+@use "sass:map";
+@import '_functions';
+@import '_variables';
+
+
+
+
+$colorInformacion:(
+    danger:(
+        background:$red,
+        color:map-get($grays, "100"),
+        font-family: Arial,
+        font-style: italic
+    ),
+    success:(
+        background:$teal,
+        color:map-get($grays, "100"),
+        font-family: cursive,
+        font-weight: bold
+    )
+);
+
+h1{
+    @each $id,$value in map-get($colorInformacion, 'success') {
+        #{$id}: $value;
+    }
 }
